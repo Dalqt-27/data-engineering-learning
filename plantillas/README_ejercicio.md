@@ -1,34 +1,35 @@
-# Ejercicio XX — [Título breve]
+# Ejercicio XX — Título descriptivo
 
-**Semana:** XX · **Habilidad:** SQL / Python / Power BI / ETL / AWS  
-**Estado:** Pendiente / En proceso / Completado
+**Semana:** XX · **Tema:** SQL / Python / Power BI / ETL / AWS  
+**Entorno:** herramienta utilizada y origen del dataset
 
 ## Objetivo
-Explicar en una o dos frases qué resultado pide la actividad.
 
-## Recursos y entorno
-- Material o curso: [enlace exacto].
-- Herramienta y versión, si importa:
-- Dataset y tabla(s):
+Describir en una o dos frases qué solicita la actividad.
 
-## Procedimiento
-1. [Preparación realizada].
-2. [Consulta, script o transformación aplicada].
-3. [Cómo se comprobó el resultado].
+## Archivos y evidencias
 
-## Código y archivos
-- [Nombre de archivo](ruta-relativa-al-archivo).
+| Propósito | Código o archivo | Evidencia | Resultado |
+| --- | --- | --- | --- |
+| [Qué hace la operación] | [`ejercicio_XX_consulta.sql`](ejercicio_XX_consulta.sql) | [Captura](ejercicio_XX_consulta.png) | [Número o resultado comprobado] |
 
-## Resultado y validación
-| Comprobación | Resultado obtenido | Evidencia |
-| --- | --- | --- |
-| [Ej.: filas devueltas] | [Número real] | [Captura / archivo] |
+## Procedimiento y criterio
 
-## Lo aprendido
-- **Concepto 1:** explicación breve vinculada a lo que hiciste.
-- **Concepto 2:** observación técnica verificable.
+Explicar brevemente cómo se realizó el ejercicio: origen de datos, condiciones, transformaciones o cálculos aplicados. No es necesario copiar todo el código si ya está disponible en archivos separados.
 
-## Dificultades y pendientes
-[Describe un problema real y cómo lo resolviste, o escribe «Sin dificultades relevantes». No inventes resultados ni errores.]
+## Validación
 
-> Las capturas sirven para verificar la ejecución. Guarda también los archivos de código, porque son la evidencia principal de lo que sabes hacer.
+Indicar cómo se comprobó el resultado y registrar cantidades reales (filas, registros descartados, tiempo o valores, según corresponda). **No marcar como ejecutado lo que aún esté pendiente.**
+
+## Aprendizajes
+
+- [Primer concepto aprendido, aplicado al ejercicio].
+- [Segundo concepto o dificultad resuelta].
+
+## Pendientes (si corresponde)
+
+[Pruebas todavía no realizadas o mejoras concretas. Eliminar esta sección si no aplica.]
+
+---
+
+**Uso:** guardar esta plantilla como `semana_XX/ejercicio_YY/README.md`. Mantener consultas y capturas en la misma carpeta si el ejercicio tiene pocos archivos. Si el volumen aumenta, separar `consultas/` y `evidencias/` y actualizar las rutas relativas.
