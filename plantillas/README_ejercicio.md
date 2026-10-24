@@ -11,7 +11,7 @@ Describir en una o dos frases qué solicita la actividad.
 
 | Propósito | Código o archivo | Evidencia | Resultado |
 | --- | --- | --- | --- |
-| [Qué hace la operación] | [`ejercicio_XX_consulta.sql`](ejercicio_XX_consulta.sql) | [Captura](ejercicio_XX_consulta.png) | [Número o resultado comprobado] |
+| [Qué hace la operación] | `ejercicio_XX_consulta.sql` | `ejercicio_XX_consulta.png` | [Número o resultado comprobado] |
 
 ## Procedimiento y criterio
 
@@ -32,4 +32,4 @@ Indicar cómo se comprobó el resultado y registrar cantidades reales (filas, re
 
 ---
 
-**Uso:** guardar esta plantilla como `semana_XX/ejercicio_YY/README.md`. Mantener consultas y capturas en la misma carpeta si el ejercicio tiene pocos archivos. Si el volumen aumenta, separar `consultas/` y `evidencias/` y actualizar las rutas relativas.
+**Uso:** reemplazar los nombres de ejemplo por los archivos reales y convertirlos en enlaces relativos cuando existan. Guardar esta plantilla como `semana_XX/ejercicio_YY/README.md`. Mantener consultas y capturas en la misma carpeta si el ejercicio tiene pocos archivos. Si el volumen aumenta, separar `consultas/` y `evidencias/` y actualizar las rutas relativas.
