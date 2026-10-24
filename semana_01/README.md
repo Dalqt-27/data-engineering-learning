@@ -1,31 +1,35 @@
-# Semana 01 — SQL: fundamentos y práctica
+# Semana 01 — Fundamentos de SQL
 
-**Herramientas:** SQLBolt, PostgreSQL y pgAdmin 4.  
-**Fuentes de evidencia:** capturas y archivos SQL entregados en la carpeta local `SQL Fundamentos 1-5`.
+**Objetivo:** practicar selección de columnas, condiciones de filtrado, ordenamiento y límites de resultados; aplicar lo aprendido sobre una tabla real de práctica en PostgreSQL.
 
-## Actividades
+**Herramientas utilizadas:** [SQLBolt](https://sqlbolt.com/), PostgreSQL y pgAdmin 4.
 
-| Día | Actividad | Evidencia | Estado |
-| --- | --- | --- | --- |
-| 1 | SQLBolt: SELECT y selección de columnas | `SQLBolt_Lesson1.png` | Realizada |
-| 2 | SQLBolt: filtros numéricos con WHERE | `SQLBolt_Lesson2.png` | Realizada |
-| 3 | SQLBolt: filtros de texto, IN y LIKE | `SQLBolt_Lesson3.png` | Realizada |
-| 4 | SQLBolt: ORDER BY, LIMIT y OFFSET | `SQLBolt_Lesson4.png` | Realizada |
-| 5 | Resumen de conceptos y aplicación con ventas | [Notas](sql_fundamentos.md) y [ejercicio 01](ejercicio_01/README.md) | Evidencias de SQL y resumen disponibles |
-| 6 | Organización de portafolio en GitHub | Este directorio y sus documentos | Documentación publicada |
+## Lecciones y evidencias
 
-> Las capturas referenciadas existen en el ZIP proporcionado y están pendientes de publicación como archivos binarios en GitHub. Su ubicación definitiva será `semana_01/evidencias/`.
+| Lección | Contenido practicado | Evidencia |
+| --- | --- | --- |
+| 1 | `SELECT` y elección de columnas | [SQLBolt_Lesson1.png](evidencias/SQLBolt_Lesson1.png) |
+| 2 | `WHERE` y comparaciones numéricas | [SQLBolt_Lesson2.png](evidencias/SQLBolt_Lesson2.png) |
+| 3 | Filtros de texto, `LIKE` e `IN` | [SQLBolt_Lesson3.png](evidencias/SQLBolt_Lesson3.png) |
+| 4 | `ORDER BY`, `LIMIT` y `OFFSET` | [SQLBolt_Lesson4.png](evidencias/SQLBolt_Lesson4.png) |
 
-## Contenido
+Las cuatro capturas están publicadas en `evidencias/`. Se conserva el nombre original de cada archivo para mantener la correspondencia con el calendario.
 
-- [Fundamentos y observaciones](sql_fundamentos.md)
-- [Ejercicio 01: ventas entregadas](ejercicio_01/README.md)
-- [Archivo consolidado SQL](sql_01.sql)
+## Resumen de aprendizaje (8 observaciones)
 
-## Aprendizaje logrado
+1. **`SELECT`** recupera las columnas indicadas; es preferible a `SELECT *` cuando se requieren campos concretos.
+2. **`FROM`** identifica la tabla consultada.
+3. **`WHERE`** descarta las filas que no cumplen una condición antes de obtener el resultado.
+4. Los patrones de **`LIKE`** permiten buscar texto: `%` coincide con cero o más caracteres y `_` con un carácter.
+5. **`IN`** compara un campo con varios valores posibles sin repetir condiciones `OR`.
+6. **`ORDER BY`** organiza las filas; `ASC` ordena ascendentemente y `DESC` de forma descendente.
+7. **`LIMIT`** muestra una cantidad máxima de filas; **`OFFSET`** permite omitir filas iniciales.
+8. Una consulta con `LIMIT 20` no informa el total de coincidencias: para ello se utiliza `COUNT(*)` con el mismo filtro.
 
-Se practicó cómo elegir columnas, filtrar registros, comparar texto y números, ordenar y limitar la salida. En PostgreSQL se aplicó el filtro `estado = 'Entregado'` y se obtuvo una muestra de **20 filas**. Una segunda consulta devolvió **1.377 ventas entregadas**, resultado visible en la evidencia suministrada.
+## Aplicación con PostgreSQL
 
-## Para próximas semanas
+En el [ejercicio 01 — Ventas entregadas](ejercicio_01/README.md) se practicaron tres consultas sobre `ventas.csv`: filtro de registros entregados, ordenamiento con tres columnas y conteo total. Se verificaron **20 filas de muestra** y **1.377 ventas entregadas**.
 
-Duplicar [la plantilla de ejercicio](../plantillas/README_ejercicio.md) en una carpeta `semana_02/ejercicio_02/` (o el número correspondiente). Los resultados numéricos deberán salir de la ejecución, no de supuestos.
+## Siguiente etapa
+
+Continuar con consultas que relacionen `ventas`, `productos` y `tiendas` mediante `JOIN`, y posteriormente utilizar agregaciones y `GROUP BY`. Para documentar nuevas prácticas está disponible la [plantilla de ejercicios](../plantillas/README_ejercicio.md).
