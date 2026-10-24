@@ -1,27 +1,30 @@
-# Datos de práctica — ventas e inventarios
+# Datos de práctica
 
-Dataset **sintético**, creado para practicar SQL, Python, Power BI y pipelines ETL. No representa ventas de una empresa real. Importes monetarios simulados en soles.
+Cinco archivos CSV **sintéticos** para ejercicios de SQL, Python, Power BI y ETL. No corresponden a transacciones reales.
 
-| Archivo | Registros | Contenido |
-| --- | ---: | --- |
-| `ventas.csv` | 1.500 | Venta, fecha, tienda, producto, unidades, precio, descuento y estado |
-| `productos.csv` | 48 | Producto, categoría, proveedor, costo y precio lista |
-| `tiendas.csv` | 5 | Identificador y nombre de tienda |
-| `stock_mensual.csv` | 2.880 | Período, tienda, producto, stock inicial y entradas |
-| `ventas_calidad.csv` | 61 | Casos preparados para pruebas de calidad; contiene errores intencionados |
+| Archivo | Filas de datos | Columnas principales | Uso previsto |
+| --- | ---: | --- | --- |
+| [`ventas.csv`](ventas.csv) | 1.500 | `venta_id`, `fecha`, `tienda_id`, `producto_id`, `unidades`, `precio_unitario`, `descuento_pct`, `estado` | Filtros, agregaciones y análisis de ventas |
+| [`productos.csv`](productos.csv) | 48 | `producto_id`, `producto`, `categoria`, `proveedor`, `costo_unitario`, `precio_lista` | Consultas por producto y categoría |
+| [`tiendas.csv`](tiendas.csv) | 5 | `tienda_id`, `tienda` | Dimensión de tiendas y `JOIN` |
+| [`stock_mensual.csv`](stock_mensual.csv) | 2.880 | `periodo`, `tienda_id`, `producto_id`, `stock_inicial`, `entradas` | Análisis de inventario por período |
+| [`ventas_calidad.csv`](ventas_calidad.csv) | 61 | Columnas de ventas con registros alterados intencionalmente | Detección de errores y validación |
 
-### Relaciones
+## Relaciones
+
 - `ventas.producto_id` → `productos.producto_id`.
 - `ventas.tienda_id` → `tiendas.tienda_id`.
-- `stock_mensual`: observación por `periodo`, `tienda_id` y `producto_id`.
+- `stock_mensual` identifica movimientos por `periodo`, `tienda_id` y `producto_id`.
 
-### Definiciones para ejercicios posteriores
-- **Ingresos netos (simulados):** solo ventas `Entregado`; `unidades * precio_unitario * (1 - descuento_pct)`.
-- **Margen bruto estimado:** ingresos netos menos `unidades * costo_unitario` para ventas entregadas. No contempla impuestos, fletes ni otros gastos.
-- **ABC:** ordenar productos por ingreso neto descendente; clasificar A hasta 80 % acumulado, B hasta 95 % y C el restante. Documentar el tratamiento del producto que cruza un umbral.
-- **Inventario:** `stock_inicial` y `entradas` no permiten derivar por sí solos el stock final sin descontar salidas reales por tienda y producto.
+## Comprobación para el ejercicio 01
 
-### Verificación del ejercicio 01
-`ventas.csv` tiene **1.500 filas**: **1.377 Entregado, 67 Devuelto y 56 Pendiente**. El conteo de 1.377 fue observado también en la captura de pgAdmin.
+De las **1.500** filas de `ventas.csv`: **1.377** tienen estado `Entregado`, **67** `Devuelto` y **56** `Pendiente`. El conteo de ventas entregadas coincide con el resultado mostrado en la captura de pgAdmin del [ejercicio 01](../semana_01/ejercicio_01/README.md).
 
-Los CSV originales están en el ZIP suministrado. Para evitar duplicar datasets innecesariamente, se pueden conservar de manera local y publicar aquí después, si se decide que ayudan a reproducir los proyectos. Este documento no implica que esos CSV ya estén disponibles en GitHub.
+## Criterios para ejercicios posteriores
+
+- **Ingreso neto simulado:** `unidades * precio_unitario * (1 - descuento_pct)`, considerando únicamente ventas entregadas.
+- **Margen bruto estimado:** ingreso neto menos `unidades * costo_unitario`, uniendo con `productos`. No contempla impuestos, envío ni gastos operativos.
+- **Clasificación ABC:** ordenar los productos por ingreso neto, calcular porcentaje acumulado y documentar el tratamiento de límites de clase.
+- **Stock:** `stock_inicial` y `entradas` no bastan para calcular stock final sin contabilizar las salidas correspondientes.
+
+**Uso:** estos archivos se pueden importar en PostgreSQL o analizar con Python y Power BI. Los registros son artificiales y no deben interpretarse como estadísticas empresariales reales.
