@@ -1,43 +1,38 @@
-# Ejercicio 01 — Filtrado de ventas entregadas
+# Ejercicio 01 — Consulta de ventas entregadas
 
-## Objetivo
+## Consigna
 
-Consultar ventas con estado `Entregado` y mostrar una muestra de 20 registros ordenados por fecha ascendente. Obtener además el **total de registros que cumplen el filtro**.
+A partir de `ventas.csv`, obtener `venta_id`, `fecha` y `unidades` para ventas con estado **Entregado**, ordenadas por fecha ascendente. Entregar una muestra de **20 filas**, el **número total de coincidencias** y el **criterio de filtrado**.
 
-## Entorno y fuente
+**Entorno:** PostgreSQL, utilizando Query Tool de pgAdmin 4.  
+**Origen:** [`datos/ventas.csv`](../../datos/ventas.csv), conjunto de datos sintético de 1.500 registros importado en una tabla llamada `ventas`.
 
-- **Motor:** PostgreSQL.
-- **Editor:** pgAdmin 4 (Query Tool).
-- **Datos:** `ventas.csv`, dataset sintético de 1.500 filas; tabla importada como `ventas`.
-- **Campos usados:** `venta_id`, `fecha`, `unidades`, `estado`.
+## Consultas y resultados
 
-## Consultas entregadas
+| Propósito | Consulta SQL | Captura de pgAdmin | Resultado |
+| --- | --- | --- | --- |
+| Comprobar visualmente el filtro mediante la columna `estado` | [`ejercicio_01_filtro.sql`](ejercicio_01_filtro.sql) | [Ver captura](ejercicio_01_filtro.png) | 20 filas, todas `Entregado` |
+| Cumplir exactamente las tres columnas solicitadas, con desempate por identificador | [`ejercicio_01_orden.sql`](ejercicio_01_orden.sql) | [Ver captura](ejercicio_01_orden.png) | 20 filas ordenadas por fecha y `venta_id` |
+| Contar todas las ventas entregadas, sin limitar la salida | [`ejercicio_01_total_ventas.sql`](ejercicio_01_total_ventas.sql) | [Ver captura](ejercicio_01_total_ventas.png) | **1.377 registros** |
 
-1. [`ejercicio_01_filtro.sql`](ejercicio_01_filtro.sql): incluye `estado` para poder comprobar visualmente el filtro.
-2. [`ejercicio_01_total_ventas.sql`](ejercicio_01_total_ventas.sql): cuenta los registros entregados.
-3. [`../sql_01.sql`](../sql_01.sql): versión consolidada con una variante de tres columnas que se ajusta exactamente a la consigna.
-
-## Resultados observados
-
-| Validación | Resultado | Soporte |
-| --- | ---: | --- |
-| Filtro `estado = 'Entregado'` | Filas mostradas con estado Entregado | `ejercicio_01_filtro.png` |
-| `ORDER BY fecha ASC LIMIT 20` | 20 filas | `ejercicio_01_filtro.png` |
-| `COUNT(*)` con el mismo filtro | **1.377 filas** | `ejercicio_01_total_ventas.png` |
-
-La captura del filtrado muestra **cuatro** columnas (incluyendo `estado`), mientras que la consigna solicita **tres**. La variante corregida está documentada en el SQL consolidado, pero no existe una captura de su ejecución en el ZIP recibido.
+Los tres archivos `.sql` y las tres imágenes `.png` están en esta misma carpeta. Se mantienen juntos porque cada consulta tiene una única evidencia identificada con el mismo nombre.
 
 ## Criterio técnico
 
-La condición `WHERE estado = 'Entregado'` excluye las ventas pendientes o devueltas. `ORDER BY fecha ASC` organiza cronológicamente el resultado y `LIMIT 20` reduce únicamente la presentación: **no modifica el total real**. Para evitar resultados arbitrarios cuando varias ventas tienen la misma fecha, la consulta consolidada propone un segundo criterio `venta_id ASC`.
+- **Filtrado:** `WHERE estado = 'Entregado'` excluye ventas con otros estados.
+- **Ordenamiento:** `ORDER BY fecha ASC, venta_id ASC` devuelve primero las fechas más antiguas y usa el identificador como desempate.
+- **Muestra:** `LIMIT 20` limita la visualización a 20 registros, no reduce el número de filas existentes en la tabla.
+- **Conteo:** `COUNT(*)` con el mismo `WHERE` devuelve el total de coincidencias: **1.377**.
 
-## Estado de evidencias
+## Validación
 
-En el ZIP recibido se verificaron ambos archivos SQL y ambas capturas de pgAdmin. **Las imágenes están pendientes de subir a GitHub**; cuando se publiquen en esta carpeta, se podrán abrir directamente desde esta página.
+Las capturas muestran los resultados obtenidos en pgAdmin. En particular, la captura de conteo presenta **1.377** en la columna `total_ventas_entregadas`. En esa imagen, el editor superior todavía contiene la consulta anterior; el archivo [`ejercicio_01_total_ventas.sql`](ejercicio_01_total_ventas.sql) conserva la consulta `COUNT(*)` para reproducir la cifra.
 
-## Qué aprendí
+**Mejora opcional de presentación:** actualizar esa captura para que aparezcan juntos el código `COUNT(*)` y su resultado en la misma ejecución.
 
-- Filtrar filas con `WHERE` antes de limitar el resultado.
-- Diferenciar una **muestra de 20 filas** del **conteo completo de 1.377**.
-- Usar una columna de control (`estado`) para inspeccionar la exactitud del filtro.
-- Guardar la consulta SQL junto con evidencia del resultado para hacer reproducible la práctica.
+## Aprendizajes
+
+- Verificar un filtro mostrando temporalmente la columna que determina la condición.
+- Usar un segundo criterio de orden cuando hay fechas repetidas.
+- Distinguir entre tamaño de la muestra (20) y total de coincidencias (1.377).
+- Conservar el SQL y la evidencia visual como documentación reproducible.
