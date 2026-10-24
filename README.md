@@ -1,37 +1,46 @@
 # Data Engineering Learning
 
-Bitácora de aprendizaje práctico en **Data Analytics e Ingeniería de Datos**, orientada a fortalecer SQL, Python, procesamiento de datos y herramientas cloud.
+Portafolio de aprendizaje práctico en **Data Analytics → Data Engineering**. Reúne ejercicios ejecutados, consultas SQL, capturas de resultados y conjuntos de datos para practicar con herramientas de análisis e ingeniería de datos.
 
-## Cómo está organizado
+## Progreso
 
-| Ubicación | Contenido |
-| --- | --- |
-| [`semana_01/`](semana_01/README.md) | Seguimiento de los fundamentos de SQL y evidencias de SQLBolt |
-| [`semana_01/ejercicio_01/`](semana_01/ejercicio_01/README.md) | Consultas con PostgreSQL sobre ventas entregadas |
-| [`datos/`](datos/README.md) | Diccionario y descripción del conjunto de datos sintético |
-| [`plantillas/`](plantillas/README_ejercicio.md) | Plantilla para documentar ejercicios futuros |
-| [`GUIA_REPOSITORIO.md`](GUIA_REPOSITORIO.md) | Normas de nombres, organización y registro de avances |
+| Módulo | Contenido | Evidencia |
+| --- | --- | --- |
+| [Semana 01 — Fundamentos SQL](semana_01/README.md) | `SELECT`, filtros, operadores, ordenamiento y límites con SQLBolt | Cuatro capturas de ejercicios |
+| [Ejercicio 01 — Ventas entregadas](semana_01/ejercicio_01/README.md) | Consultas en PostgreSQL y pgAdmin 4 | Tres archivos SQL y tres capturas de ejecución |
 
-## Avances verificados
+En el ejercicio 01 se consultó una muestra de **20 ventas entregadas** y se obtuvo un total de **1.377 registros** con estado `Entregado` dentro de un dataset sintético de 1.500 ventas.
 
-- **SQLBolt 1–4:** cuatro capturas muestran los ejercicios completados.
-- **PostgreSQL / pgAdmin 4:** consulta con filtro `estado = 'Entregado'`, orden ascendente y muestra de 20 filas.
-- **Conteo de ventas entregadas:** **1.377 registros**, según captura de pgAdmin y verificación del CSV de 1.500 registros.
-- **Documentación:** archivos SQL, explicación del criterio de filtrado y bitácora breve de fundamentos.
+## Organización
 
-Las capturas originales y los CSV se conservan en el paquete local de ejercicios. Su publicación en GitHub se verificará por separado; las rutas a imágenes que aún no estén subidas se indican como pendientes en las secciones correspondientes.
+```text
+data-engineering-learning/
+├── README.md
+├── datos/
+│   ├── README.md
+│   └── *.csv                      # Datos sintéticos de práctica
+├── semana_01/
+│   ├── README.md                 # Contenidos y aprendizajes semanales
+│   ├── evidencias/               # Capturas de SQLBolt (lecciones 1–4)
+│   └── ejercicio_01/
+│       ├── README.md             # Objetivo, consultas y resultados
+│       ├── ejercicio_01_*.sql    # Tres consultas SQL
+│       └── ejercicio_01_*.png    # Tres evidencias de pgAdmin
+└── plantillas/
+    └── README_ejercicio.md      # Modelo reutilizable para próximas prácticas
+```
 
-## Herramientas de esta etapa
+## Recursos
 
-PostgreSQL · pgAdmin 4 · SQLBolt · Git · GitHub.
+- [Datasets y descripción de columnas](datos/README.md).
+- [Documentación de la semana 01](semana_01/README.md).
+- [Plantilla de ejercicios](plantillas/README_ejercicio.md).
 
-## Principios del portafolio
+## Convención para nuevas entregas
 
-1. Registrar **qué se hizo y qué resultado se observó**, sin presentar ejercicios pendientes como ejecutados.
-2. Guardar el código SQL y una breve descripción de los criterios, además de capturas cuando sean útiles.
-3. Mantener **un directorio por ejercicio** y una bitácora resumida por semana.
-4. Emplear **datos sintéticos**, sin contraseñas, claves API ni información personal.
+1. Crear `semana_XX/` y documentar los aprendizajes en su `README.md`.
+2. Guardar cada práctica aplicada en `semana_XX/ejercicio_YY/`, con su **código, capturas y README**.
+3. Usar nombres coincidentes para consulta y evidencia (por ejemplo, `ejercicio_02_ventas.sql` y `ejercicio_02_ventas.png`). En ejercicios pequeños, mantenerlos juntos; separar carpetas solo si aumenta considerablemente la cantidad de archivos.
+4. Registrar únicamente resultados efectivamente ejecutados y conservar las consultas necesarias para reproducirlos.
 
-## Próximo trabajo
-
-Continuar las actividades del calendario: nuevos filtros, funciones, consultas entre tablas y, posteriormente, Python, ETL y AWS. Las nuevas semanas seguirán el formato descrito en [la guía](GUIA_REPOSITORIO.md).
+**Datos:** los archivos CSV son sintéticos y no representan información comercial real. No se deben subir contraseñas, archivos de configuración sensibles ni credenciales de servicios cloud.
