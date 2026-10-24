@@ -1,24 +1,37 @@
 # Data Engineering Learning
 
-Repositorio de aprendizaje práctico de **SQL, Python, Data Analytics y Data Engineering**.
+Bitácora de aprendizaje práctico en **Data Analytics e Ingeniería de Datos**, orientada a fortalecer SQL, Python, procesamiento de datos y herramientas cloud.
 
-## Objetivo
-Documentar ejercicios reproducibles y proyectos que demuestren competencias técnicas para prácticas preprofesionales en análisis e ingeniería de datos.
+## Cómo está organizado
 
-## Estructura
-- [Semana 01: fundamentos SQL](semana_01/sql_fundamentos.md): notas de SELECT, WHERE, LIKE, ORDER BY, LIMIT y OFFSET.
-- [Consultas de la semana 01](semana_01/sql_01.sql): consultas para el dataset `ventas.csv`.
-- `semana_01/evidencias/`: capturas de los ejercicios (se agregarán manualmente).
+| Ubicación | Contenido |
+| --- | --- |
+| [`semana_01/`](semana_01/README.md) | Seguimiento de los fundamentos de SQL y evidencias de SQLBolt |
+| [`semana_01/ejercicio_01/`](semana_01/ejercicio_01/README.md) | Consultas con PostgreSQL sobre ventas entregadas |
+| [`datos/`](datos/README.md) | Diccionario y descripción del conjunto de datos sintético |
+| [`plantillas/`](plantillas/README_ejercicio.md) | Plantilla para documentar ejercicios futuros |
+| [`GUIA_REPOSITORIO.md`](GUIA_REPOSITORIO.md) | Normas de nombres, organización y registro de avances |
 
-## Herramientas
-PostgreSQL, pgAdmin 4, SQLBolt, Git y GitHub.
+## Avances verificados
 
-## Fuente de datos
-Dataset **sintético** de ventas e inventarios generado para esta ruta de aprendizaje. Los datos no corresponden a una empresa real.
+- **SQLBolt 1–4:** cuatro capturas muestran los ejercicios completados.
+- **PostgreSQL / pgAdmin 4:** consulta con filtro `estado = 'Entregado'`, orden ascendente y muestra de 20 filas.
+- **Conteo de ventas entregadas:** **1.377 registros**, según captura de pgAdmin y verificación del CSV de 1.500 registros.
+- **Documentación:** archivos SQL, explicación del criterio de filtrado y bitácora breve de fundamentos.
 
-## Estado
-- SQLBolt: lecciones 1–4 reportadas como completadas.
-- Ejercicio en PostgreSQL: consulta de 20 ventas entregadas mostrada en pgAdmin.
-- Pendiente de validar en PostgreSQL: consulta de conteo y consultas adicionales del repaso.
+Las capturas originales y los CSV se conservan en el paquete local de ejercicios. Su publicación en GitHub se verificará por separado; las rutas a imágenes que aún no estén subidas se indican como pendientes en las secciones correspondientes.
 
-> Este repositorio contiene evidencias de aprendizaje. No se deben publicar contraseñas, datos personales ni credenciales de AWS.
+## Herramientas de esta etapa
+
+PostgreSQL · pgAdmin 4 · SQLBolt · Git · GitHub.
+
+## Principios del portafolio
+
+1. Registrar **qué se hizo y qué resultado se observó**, sin presentar ejercicios pendientes como ejecutados.
+2. Guardar el código SQL y una breve descripción de los criterios, además de capturas cuando sean útiles.
+3. Mantener **un directorio por ejercicio** y una bitácora resumida por semana.
+4. Emplear **datos sintéticos**, sin contraseñas, claves API ni información personal.
+
+## Próximo trabajo
+
+Continuar las actividades del calendario: nuevos filtros, funciones, consultas entre tablas y, posteriormente, Python, ETL y AWS. Las nuevas semanas seguirán el formato descrito en [la guía](GUIA_REPOSITORIO.md).
