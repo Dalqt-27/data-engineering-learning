@@ -1,29 +1,24 @@
-# Semana 01 — Fundamentos de SQL
+# Semana 01 — Apuntes de fundamentos de SQL
 
-## Recursos
-- [SQLBolt — Lección 1: SELECT](https://sqlbolt.com/lesson/select_queries_introduction)
-- [SQLBolt — Lección 2: filtros con WHERE](https://sqlbolt.com/lesson/select_queries_with_constraints)
-- [SQLBolt — Lección 3: filtros de texto](https://sqlbolt.com/lesson/select_queries_with_constraints_pt_2)
-- [SQLBolt — Lección 4: ordenar y limitar](https://sqlbolt.com/lesson/filtering_sorting_query_results)
+## Contenidos practicados
 
-## Registro de aprendizaje — 8 observaciones
-1. **SELECT** permite indicar exactamente qué columnas necesito consultar, mientras que **SELECT *** muestra todas las columnas.
-2. **FROM** identifica la tabla de la que se obtienen los registros.
-3. **WHERE** filtra filas según una condición; puedo utilizar operadores como `=`, `>` y `<`.
-4. **LIKE** sirve para buscar patrones de texto; `%` representa cero o más caracteres y `_` un solo carácter.
-5. **IN** permite comparar un campo con varios valores posibles sin escribir varios `OR`.
-6. **ORDER BY** ordena el resultado; **ASC** es ascendente y **DESC** descendente.
-7. **LIMIT** controla cuántas filas se muestran y **OFFSET** permite omitir una cantidad inicial de filas.
-8. El orden lógico de mi consulta de ventas es seleccionar columnas, filtrar `estado = 'Entregado'`, ordenar por fecha y mostrar 20 registros. Añadir `venta_id` como segundo criterio desempata fechas repetidas.
+Las capturas de **SQLBolt, lecciones 1 a 4**, muestran la finalización de los ejercicios interactivos. La práctica se complementó con consultas en **PostgreSQL / pgAdmin 4** usando `ventas.csv`.
 
-## Ejercicio aplicado: ventas entregadas
-**Dataset:** `ventas.csv` (datos sintéticos de práctica).
+## Ocho aprendizajes
 
-**Herramienta:** PostgreSQL mediante pgAdmin 4.
+1. **`SELECT`** permite elegir las columnas necesarias. `SELECT *` recupera todas las columnas, pero en un análisis es más claro indicar los campos relevantes.
+2. **`FROM`** especifica la tabla de origen de los datos.
+3. **`WHERE`** restringe las filas según una condición: por ejemplo, `estado = 'Entregado'`.
+4. **`LIKE`** busca patrones de texto; `%` representa cualquier secuencia de caracteres y `_` un solo carácter.
+5. **`IN`** comprueba si un valor pertenece a un conjunto de opciones y evita repetir comparaciones unidas por `OR`.
+6. **`ORDER BY`** ordena la salida; `ASC` indica orden ascendente y `DESC` descendente. Cuando hay empates, puede añadirse una segunda columna de orden.
+7. **`LIMIT`** reduce el número de filas mostradas y **`OFFSET`** omite un número inicial de filas. Ninguna de estas cláusulas sustituye a `COUNT(*)` si se necesita conocer el total.
+8. **Orden de construcción de la consulta:** escoger columnas → identificar tabla → filtrar registros → ordenar → limitar resultados. Este criterio se aplicó a las ventas entregadas.
 
-**Consigna:** obtener `venta_id`, `fecha` y `unidades` de las ventas cuyo estado sea `Entregado`, ordenadas cronológicamente.
+## Ejercicio práctico: ventas entregadas
 
-**Consulta ejecutada, según captura y archivo proporcionados:**
+Consulta ejecutada:
+
 ```sql
 SELECT venta_id, fecha, unidades, estado
 FROM ventas
@@ -32,18 +27,35 @@ ORDER BY fecha ASC
 LIMIT 20;
 ```
 
-**Resultado observado:** pgAdmin mostró **20 filas**. El filtro selecciona únicamente ventas con estado `Entregado`. La consulta visualizada incluye también `estado` para verificar el filtro, aunque la consigna original pedía tres columnas.
+**Observado en pgAdmin:** se muestran **20 filas** con estado `Entregado`, ordenadas por fecha ascendente. La cuarta columna, `estado`, se incluyó para verificar visualmente la condición, aunque la consigna original pedía tres campos.
 
-**Ajuste recomendado:** seleccionar solo las tres columnas solicitadas y añadir `venta_id ASC` para que el orden sea estable en las fechas iguales.
+Conteo ejecutado:
 
-**Pendiente de comprobar:** ejecutar en pgAdmin el conteo total y guardar su resultado. En el archivo CSV de práctica distribuido con la ruta hay **1.377** registros con estado `Entregado` sobre **1.500** filas; este número es una verificación del CSV, no un resultado que afirme haber ejecutado personalmente en pgAdmin.
+```sql
+SELECT COUNT(*) AS total_ventas_entregadas
+FROM ventas
+WHERE estado = 'Entregado';
+```
 
-## Evidencias
-- Capturas SQLBolt lecciones 1–4: guardadas localmente por el estudiante; pendientes de subir a `semana_01/evidencias/`.
-- Captura de la consulta de pgAdmin: guardada localmente; pendiente de subir.
-- [Archivo de consultas SQL](sql_01.sql): contiene la consulta mostrada y consultas adicionales para completar los entregables del calendario.
+**Observado en pgAdmin:** **1.377 ventas entregadas**, coherente con la verificación de `ventas.csv`.
 
-## Próximos pasos
-- Ejecutar las consultas 2 y 3 del archivo `sql_01.sql`.
-- Guardar capturas del conteo y la muestra de 20 filas.
-- Subir las evidencias a la carpeta de GitHub y completar el día de portafolio.
+Para una entrega que respete exactamente las tres columnas solicitadas, se propone esta versión (todavía sin captura de ejecución en los archivos recibidos):
+
+```sql
+SELECT venta_id, fecha, unidades
+FROM ventas
+WHERE estado = 'Entregado'
+ORDER BY fecha ASC, venta_id ASC
+LIMIT 20;
+```
+
+## Evidencias y archivos
+
+- [Descripción y resultados del ejercicio 01](ejercicio_01/README.md).
+- [Consultas del ejercicio](ejercicio_01/ejercicio_01_filtro.sql) y [conteo total](ejercicio_01/ejercicio_01_total_ventas.sql).
+- [Consultas consolidadas y variante ajustada](sql_01.sql).
+- **Capturas de SQLBolt y pgAdmin:** verificadas en el ZIP proporcionado, pendientes de publicar como imágenes en GitHub.
+
+## Próximo aprendizaje
+
+Combinar tablas relacionadas mediante `JOIN`, agrupar con `GROUP BY` y resolver consultas aplicadas a inventarios y ventas. Para documentar ejercicios futuros se dispone de [una plantilla reutilizable](../plantillas/README_ejercicio.md).
