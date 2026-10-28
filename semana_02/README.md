@@ -1,60 +1,53 @@
 # Semana 02 — JOIN, GROUP BY y HAVING
 
-**Objetivo:** relacionar tablas, identificar valores sin correspondencia y resumir registros mediante funciones de agregación. Las prácticas combinan ejercicios de [SQLBolt](https://sqlbolt.com/) con consultas ejecutadas en PostgreSQL mediante pgAdmin 4.
+**Objetivo:** combinar información de varias tablas, interpretar valores sin correspondencia y generar resultados agrupados. Los contenidos se practicaron en [SQLBolt](https://sqlbolt.com/) y se aplicaron a los datasets de ventas y productos con PostgreSQL y pgAdmin 4.
 
-## 1. Lecciones de SQLBolt
+## Lecciones y evidencias
 
-| Lección | Concepto trabajado | Evidencia |
+| Lección | Concepto trabajado | Captura |
 | --- | --- | --- |
-| [6](https://sqlbolt.com/lesson/6) | `INNER JOIN` entre tablas relacionadas | [Captura](evidencias/SQLBolt_Lesson6.png) |
-| [7](https://sqlbolt.com/lesson/7) | `LEFT JOIN` y conservación de filas sin correspondencia | [Captura](evidencias/SQLBolt_Lesson7.png) |
-| [8](https://sqlbolt.com/lesson/8) | Identificación de valores `NULL` | [Captura](evidencias/SQLBolt_Lesson8.png) |
-| [9](https://sqlbolt.com/lesson/9) | Expresiones calculadas y operadores | [Captura](evidencias/SQLBolt_Lesson9.png) |
-| [10](https://sqlbolt.com/lesson/10) | Funciones de agregación y `GROUP BY` | [Captura](evidencias/SQLBolt_Lesson10.png) |
-| [11](https://sqlbolt.com/lesson/11) | Agregaciones sobre conjuntos de registros | [Captura](evidencias/SQLBolt_Lesson11.png) |
-| [12](https://sqlbolt.com/lesson/12) | Orden lógico de procesamiento SQL | [Captura](evidencias/SQLBolt_Lesson12.png) |
+| [6](https://sqlbolt.com/lesson/6) | `INNER JOIN` y relaciones entre tablas | [Ver evidencia](evidencias/SQLBolt_Lesson6.png) |
+| [7](https://sqlbolt.com/lesson/7) | `LEFT JOIN` y filas sin correspondencia | [Ver evidencia](evidencias/SQLBolt_Lesson7.png) |
+| [8](https://sqlbolt.com/lesson/8) | Valores `NULL` y consultas sobre datos no relacionados | [Ver evidencia](evidencias/SQLBolt_Lesson8.png) |
+| [9](https://sqlbolt.com/lesson/9) | Expresiones y operadores en consultas | [Ver evidencia](evidencias/SQLBolt_Lesson9.png) |
+| [10](https://sqlbolt.com/lesson/10) | Funciones de agregación y agrupaciones | [Ver evidencia](evidencias/SQLBolt_Lesson10.png) |
+| [11](https://sqlbolt.com/lesson/11) | Agregaciones y resultados por grupo | [Ver evidencia](evidencias/SQLBolt_Lesson11.png) |
+| [12](https://sqlbolt.com/lesson/12) | Orden lógico de una consulta SQL | [Ver evidencia](evidencias/SQLBolt_Lesson12.png) |
 
-**Estado:** las siete capturas están publicadas en el repositorio y muestran las consignas correspondientes marcadas como correctas.
+Las siete capturas están publicadas en `evidencias/` y muestran las consignas marcadas como correctas.
 
-## 2. Prácticas en PostgreSQL
+## Ejercicios aplicados
 
-| Práctica | Operación principal | Resultado verificado |
+| Ejercicio | Técnica principal | Resultado |
 | --- | --- | --- |
-| [Ejercicio 02 — Ventas y productos](ejercicio_02/README.md) | `INNER JOIN` mediante `producto_id` | 1.500 ventas con información de producto |
-| [Ejercicio 03 — Unidades por tienda](ejercicio_03/README.md) | `WHERE`, `SUM`, `GROUP BY`, `ORDER BY` | 5 tiendas; 6.236 unidades entregadas |
+| [02 — Ventas y productos](ejercicio_02/README.md) | `INNER JOIN` por `producto_id` | **1.500 filas** relacionadas |
+| [03 — Unidades por tienda](ejercicio_03/README.md) | `WHERE`, `GROUP BY`, `SUM` y orden descendente | **5 tiendas y 6.236 unidades entregadas** |
 
-Se emplearon los [datasets sintéticos de ventas y productos](../datos/README.md). Cada carpeta contiene la consulta SQL y su captura de ejecución.
+Los códigos SQL y las capturas correspondientes se encuentran en la carpeta de cada ejercicio.
 
-## 3. Ejemplos adicionales: WHERE y HAVING
+## Ejemplos complementarios — WHERE y HAVING
 
-Ambos ejemplos se ejecutaron en pgAdmin; sus consultas están publicadas. **Solo falta subir las dos capturas** a `ejemplos_having/`.
+Se ejecutaron dos consultas adicionales para distinguir el filtrado de filas mediante `WHERE` del filtrado de grupos mediante `HAVING`. Ambas consultas y capturas están publicadas en [`ejemplos_adicionales_having/`](ejemplos_adicionales_having/).
 
-| Ejemplo | Consulta SQL | Evidencia por adjuntar | Resultado obtenido |
+| Propósito | Consulta SQL | Captura de pgAdmin | Resultado |
 | --- | --- | --- | --- |
-| 1. Tiendas con más de 1.230 unidades entregadas | [`Ejemplo1_SQL_having.sql`](ejemplos_having/Ejemplo1_SQL_having.sql) | `Ejemplo1_SQL_having.png` | **3 tiendas:** T01 (1.240), T03 (1.320), T05 (1.324) |
-| 2. Productos con al menos 10 ventas entregadas | [`Ejemplo2_SQL_having.sql`](ejemplos_having/Ejemplo2_SQL_having.sql) | `Ejemplo2_SQL_having.png` | **48 productos** |
+| Mostrar tiendas cuya suma de unidades entregadas supera 1.230 | [`Ejemplo1_SQL_having.sql`](ejemplos_adicionales_having/Ejemplo1_SQL_having.sql) | [Ver captura](ejemplos_adicionales_having/Ejemplo1_SQL_having.png) | **3 tiendas:** T01 (1.240), T03 (1.320) y T05 (1.324) |
+| Identificar productos con al menos 10 ventas entregadas | [`Ejemplo2_SQL_having.sql`](ejemplos_adicionales_having/Ejemplo2_SQL_having.sql) | [Ver captura](ejemplos_adicionales_having/Ejemplo2_SQL_having.png) | **48 productos** |
 
-En el segundo ejemplo, `COUNT(*)` contabiliza *registros de venta*, no unidades. El dataset contiene 48 productos distintos y los 48 cumplen el umbral. La consulta del primer ejemplo no incluye `ORDER BY`, por lo que el orden de las tres tiendas no está garantizado.
+En el segundo ejemplo, `COUNT(*)` cuenta registros de venta, no unidades vendidas. El primer ejemplo no especifica `ORDER BY`, por lo que el orden de los grupos no está garantizado.
 
-## 4. Aprendizajes
+## Aprendizajes
 
-1. **`INNER JOIN`** devuelve coincidencias entre tablas; en el ejercicio 02, todas las ventas encuentran un producto asociado.
-2. **`LEFT JOIN`** conserva las filas de la tabla izquierda aunque no exista un registro relacionado en la derecha.
-3. **`IS NULL`** permite localizar valores ausentes, a diferencia de `= NULL`, que no realiza esa comparación correctamente.
-4. **`SUM` y `COUNT`** producen métricas distintas: unidades acumuladas y cantidad de registros, respectivamente.
-5. **`GROUP BY`** crea agrupaciones antes de calcular métricas por tienda o producto.
-6. **`WHERE`** restringe las ventas a `Entregado` antes del cálculo de agregados.
-7. **`HAVING`** selecciona grupos después de calcular `SUM(unidades)` o `COUNT(*)`. Se comprobó con tres tiendas que superan 1.230 unidades y 48 productos con diez o más ventas.
+1. **`INNER JOIN`** devuelve filas con correspondencia entre tablas; en este conjunto de datos, las 1.500 ventas encuentran producto asociado.
+2. **`LEFT JOIN`** mantiene las filas de la tabla izquierda incluso sin coincidencia en la derecha.
+3. **`IS NULL`** y **`IS NOT NULL`** permiten evaluar valores ausentes; `= NULL` no es la comparación apropiada.
+4. **`SUM`** suma valores de una columna y **`COUNT(*)`** cuenta filas.
+5. **`GROUP BY`** agrupa registros para calcular métricas por tienda o producto.
+6. **`WHERE`** filtra filas antes de que se formen los grupos; aquí se restringieron las ventas a estado `Entregado`.
+7. **`HAVING`** filtra resultados de grupos agregados; se aplicó tanto a sumas como a conteos.
 
-### Diferencia entre WHERE y HAVING
+El orden lógico habitual se interpreta como `FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT`. Esta secuencia ayuda a distinguir las condiciones sobre filas de las condiciones sobre resultados agregados, aunque el motor pueda optimizar la ejecución física.
 
-El orden lógico de una consulta se interpreta como `FROM/JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT`. En ambos ejemplos, `WHERE estado = 'Entregado'` excluye las ventas de otros estados antes de agrupar. Luego `HAVING` filtra los resultados agregados: por unidades acumuladas de cada tienda en el primer caso y por cantidad de ventas de cada producto en el segundo. Esta distinción evita confundir criterios aplicados a filas individuales con condiciones que dependen de una suma o un conteo.
+## Continuidad
 
-## 5. Pendiente para cerrar el registro de evidencias
-
-Subir únicamente estas capturas a [`ejemplos_having/`](ejemplos_having/):
-
-- `Ejemplo1_SQL_having.png`
-- `Ejemplo2_SQL_having.png`
-
-No es necesario volver a subir los SQL, los ejercicios 02 y 03 ni las capturas de SQLBolt, porque ya están publicados.
+Las consultas de esta semana quedan documentadas con su código y evidencia visual. Los siguientes ejercicios podrán reutilizar los mismos datasets para practicar uniones, agregaciones y análisis de calidad de datos.
