@@ -1,30 +1,28 @@
-# Ejercicio 02 — INNER JOIN entre ventas y productos
+# Ejercicio 02 — INNER JOIN de ventas y productos
 
 ## Objetivo
 
-Combinar la tabla `ventas` con `productos` usando `producto_id` para identificar el nombre y la categoría asociados a cada venta.
+Consultar el identificador de cada venta, su producto y su categoría combinando las tablas `ventas` y `productos` por `producto_id`.
 
 **Entorno:** PostgreSQL / pgAdmin 4.  
-**Fuentes:** [`ventas.csv`](../../datos/ventas.csv) y [`productos.csv`](../../datos/productos.csv), datasets sintéticos del repositorio.
+**Datasets:** [`ventas.csv`](../../datos/ventas.csv) y [`productos.csv`](../../datos/productos.csv).
 
-## Consulta y evidencia
+## Archivos
 
-| Código | Captura adjunta | Resultado observado |
+| Consulta | Captura | Resultado observado |
 | --- | --- | --- |
-| [`ejercicio_02_innerjoin.sql`](ejercicio_02_innerjoin.sql) | `ejercicio_02_innerjoin.png` (pendiente de subir a GitHub) | **1.500 registros** mostrados en pgAdmin |
+| [`ejercicio_02_innerjoin.sql`](ejercicio_02_innerjoin.sql) | [`ejercicio_02_innerjoin.png`](ejercicio_02_innerjoin.png) | **1.500 filas** |
 
-La consulta solicita `venta_id`, `producto` y `categoria`, relacionando ambas tablas con `ON ventas.producto_id = productos.producto_id`. No aplica filtros por estado, de modo que incluye ventas entregadas, pendientes y devueltas.
+## Procedimiento y validación
 
-## Validación y explicación
+Se utilizó `INNER JOIN` para relacionar `ventas.producto_id` con `productos.producto_id`. El resultado presenta tres columnas: `venta_id`, `producto` y `categoria`. No se aplicó filtro por estado, por lo que incluye todas las ventas del dataset de práctica.
 
-`productos` tiene 48 filas y `ventas` tiene 1.500. Un `INNER JOIN` no implica que la salida deba tener 48 filas: un producto puede aparecer en múltiples ventas. En este dataset, todos los identificadores de producto utilizados por las ventas encuentran correspondencia, por eso la salida tiene **1.500 registros**. El panel de pgAdmin muestra una página de hasta 1.000 filas, aunque indica **Total rows: 1500**.
-
-En una consulta con muchas tablas, se recomienda usar alias y nombres de columna calificados (por ejemplo, `v.venta_id` y `p.producto`) para mejorar la claridad. Se conserva aquí la consulta enviada para que coincida con la captura original.
+El archivo `ventas.csv` tiene 1.500 registros y `productos.csv` contiene 48 productos. La relación es de **un producto a múltiples ventas**; por ello, no debe confundirse el número de productos con el número de filas del resultado. Los 1.500 registros de ventas tienen un identificador de producto presente en la tabla `productos`, lo que explica el total mostrado en pgAdmin.
 
 ## Aprendizajes
 
-- `INNER JOIN` exige coincidencia entre las claves de las tablas relacionadas.
-- Una relación de un producto a muchas ventas puede generar varias filas por producto.
-- Conviene distinguir la paginación del editor del número total de filas de la consulta.
+- `INNER JOIN` combina registros que satisfacen una condición de unión.
+- Una relación de uno a muchos puede producir múltiples filas asociadas a un mismo producto.
+- Usar alias como `v` y `p` facilitaría la lectura de consultas más largas; el archivo SQL conserva la consulta realizada.
 
-**Captura:** el archivo `ejercicio_02_innerjoin.png` fue recibido en el chat; aún no figura publicado en el repositorio.
+**Estado:** consulta y captura publicadas en el repositorio.
