@@ -1,59 +1,51 @@
 # Data Engineering Learning
 
-Portafolio de aprendizaje práctico orientado a **Data Analytics → Data Engineering**. Contiene consultas SQL ejecutadas, resultados comprobables y datos sintéticos para practicar procesamiento y análisis de información.
+Repositorio de prácticas para desarrollar competencias en **Data Analytics e Ingeniería de Datos**. Reúne ejercicios de SQL, resultados comprobables y datasets sintéticos que servirán como base para futuros proyectos con Python, ETL y AWS.
 
-## Progreso documentado
+## Progreso
 
-| Módulo | Temas | Ejercicios |
+| Etapa | Temas | Evidencias |
 | --- | --- | --- |
-| [Semana 01 — Fundamentos SQL](semana_01/README.md) | `SELECT`, `WHERE`, `LIKE`, ordenamiento y límites | [01 — Ventas entregadas](semana_01/ejercicio_01/README.md): 20 filas de muestra y 1.377 ventas entregadas |
-| [Semana 02 — SQL intermedio](semana_02/README.md) | `INNER JOIN`, `LEFT JOIN`, `NULL`, agregaciones, `GROUP BY` y `HAVING` | [02 — Ventas y productos](semana_02/ejercicio_02/README.md): 1.500 filas; [03 — Unidades por tienda](semana_02/ejercicio_03/README.md): 5 tiendas y 6.236 unidades |
+| [Semana 01 — SQL básico](semana_01/README.md) | `SELECT`, `WHERE`, `LIKE`, `ORDER BY`, `LIMIT` | SQLBolt 1–4 y [ejercicio 01: ventas entregadas](semana_01/ejercicio_01/README.md) |
+| [Semana 02 — SQL intermedio](semana_02/README.md) | `INNER JOIN`, `LEFT JOIN`, `NULL`, `GROUP BY`, `HAVING` | SQLBolt 6–12, [ejercicio 02: INNER JOIN](semana_02/ejercicio_02/README.md) y [ejercicio 03: GROUP BY](semana_02/ejercicio_03/README.md) |
 
-**Verificación:** los SQL de los ejercicios 01–03 y los resultados declarados se apoyan en consultas y capturas proporcionadas. Las capturas de **la semana 02** todavía deben subirse al repositorio; algunas tareas de SQLBolt están documentadas como parciales en el [resumen semanal](semana_02/README.md).
+**Resultados verificados:** 1.377 ventas entregadas sobre 1.500 ventas del dataset; 1.500 filas relacionadas con productos mediante `INNER JOIN`; 6.236 unidades entregadas distribuidas entre cinco tiendas. En la segunda semana también se ejecutaron [dos consultas con `HAVING`](semana_02/README.md#3-ejemplos-adicionales-where-y-having): una devuelve tres tiendas y la otra, 48 productos.
 
-## Estructura del repositorio
+## Estructura
 
 ```text
 data-engineering-learning/
 ├── README.md
 ├── datos/
 │   ├── README.md
-│   └── *.csv                         # Datos sintéticos
+│   └── *.csv                         # Datasets sintéticos
 ├── plantillas/
 │   └── README_ejercicio.md
 ├── semana_01/
-│   ├── README.md                    # Aprendizajes semanales y SQLBolt
-│   ├── evidencias/                  # Capturas SQLBolt 1–4
-│   └── ejercicio_01/
-│       ├── README.md
-│       ├── *.sql                    # Tres consultas PostgreSQL
-│       └── *.png                    # Tres capturas pgAdmin
+│   ├── README.md
+│   ├── evidencias/                  # SQLBolt 1–4
+│   └── ejercicio_01/               # 3 SQL + 3 PNG + README
 └── semana_02/
-    ├── README.md                    # Lecciones y notas WHERE / HAVING
-    ├── evidencias/                  # Capturas SQLBolt 6–12 (por subir)
-    ├── ejercicio_02/
-    │   ├── README.md
-    │   ├── ejercicio_02_innerjoin.sql
-    │   └── ejercicio_02_innerjoin.png # Por subir
-    └── ejercicio_03/
-        ├── README.md
-        ├── ejercicio_03_group_by.sql
-        └── ejercicio_03_group_by.png  # Por subir
+    ├── README.md
+    ├── evidencias/                  # SQLBolt 6–12
+    ├── ejercicio_02/               # INNER JOIN: SQL + PNG + README
+    ├── ejercicio_03/               # GROUP BY: SQL + PNG + README
+    └── ejemplos_having/            # 2 SQL; faltan únicamente 2 PNG
 ```
 
-## Datasets y herramientas
+## Recursos de práctica
 
-- [Descripción de los cinco CSV](datos/README.md).
-- **SQL:** PostgreSQL, pgAdmin 4 y [SQLBolt](https://sqlbolt.com/).
-- En etapas posteriores: Python, pandas, Power BI y AWS, conforme al plan de estudio.
+- [Datasets: ventas, productos, tiendas e inventarios](datos/README.md).
+- [SQLBolt](https://sqlbolt.com/) para ejercicios interactivos.
+- PostgreSQL y pgAdmin 4 para ejecutar consultas sobre tablas importadas.
+- [Plantilla para documentar nuevos ejercicios](plantillas/README_ejercicio.md).
 
-## Cómo incorporar un ejercicio nuevo
+## Cómo se documenta cada avance
 
-1. Crear `semana_XX/ejercicio_YY/` y colocar allí el código y sus capturas con **nombres relacionados**.
-2. Crear el `README.md` del ejercicio usando la [plantilla](plantillas/README_ejercicio.md): objetivo, entorno, código, validación y aprendizajes.
-3. Actualizar el `README.md` semanal con las lecciones y el vínculo al ejercicio.
-4. Agregar al cuadro de progreso principal solo los resultados efectivamente comprobados.
+1. **Semana:** `semana_XX/README.md` reúne contenidos, lecciones y aprendizajes, con enlaces a las capturas de SQLBolt.
+2. **Ejercicio aplicado:** `semana_XX/ejercicio_YY/` contiene el SQL o código, la captura de ejecución y un README con objetivo, criterios y resultados.
+3. **Ejemplos complementarios:** se agrupan por tema cuando no necesitan un ejercicio independiente, como `semana_02/ejemplos_having/`.
+4. **Verificación:** los resultados se registran solo después de ejecutarse. Cuando falte subir una captura, se indica expresamente.
+5. **Sin duplicados:** no se generan archivos SQL consolidados que repitan las consultas individuales.
 
-Para ejercicios cortos se mantienen `.sql` y `.png` juntos. Las capturas de cursos interactivos se agrupan en la carpeta `evidencias/` de cada semana. No se crean archivos SQL consolidados que dupliquen los de los ejercicios.
-
-> **Nota:** los datos publicados son sintéticos. No almacenar contraseñas, credenciales cloud ni datos privados en este repositorio.
+**Nota:** los datasets son artificiales y se utilizan exclusivamente con fines educativos. No se deben publicar contraseñas, claves de AWS ni información confidencial.
