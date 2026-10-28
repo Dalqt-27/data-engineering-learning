@@ -1,19 +1,19 @@
-# Ejercicio 03 — Unidades entregadas agrupadas por tienda
+# Ejercicio 03 — Unidades entregadas por tienda
 
 ## Objetivo
 
-Calcular el número total de unidades vendidas con estado `Entregado` por `tienda_id` y ordenar las tiendas de mayor a menor cantidad.
+Obtener el total de unidades de ventas con estado `Entregado` para cada tienda y ordenar los resultados de mayor a menor.
 
 **Entorno:** PostgreSQL / pgAdmin 4.  
-**Fuente:** [`ventas.csv`](../../datos/ventas.csv), dataset sintético.
+**Dataset:** [`ventas.csv`](../../datos/ventas.csv).
 
-## Consulta y evidencia
+## Archivos
 
-| Código | Captura adjunta | Resultado |
+| Consulta | Captura | Resultado observado |
 | --- | --- | --- |
-| [`ejercicio_03_group_by.sql`](ejercicio_03_group_by.sql) | `ejercicio_03_group_by.png` (pendiente de subir a GitHub) | 5 tiendas, 6.236 unidades entregadas |
+| [`ejercicio_03_group_by.sql`](ejercicio_03_group_by.sql) | [`ejercicio_03_group by.png`](ejercicio_03_group%20by.png) | **5 tiendas, 6.236 unidades** |
 
-## Resultados verificados
+## Resultados
 
 | Tienda | Unidades entregadas |
 | --- | ---: |
@@ -24,21 +24,18 @@ Calcular el número total de unidades vendidas con estado `Entregado` por `tiend
 | T02 | 1.143 |
 | **Total** | **6.236** |
 
-Los valores de la tabla coinciden con la captura de pgAdmin y se comprobaron sobre `datos/ventas.csv`.
+Los valores coinciden con los resultados mostrados en pgAdmin y con los registros del dataset sintético.
 
 ## Criterio técnico
 
-1. `WHERE estado = 'Entregado'` limita el cálculo a las ventas entregadas.
-2. `GROUP BY tienda_id` crea un grupo por tienda.
-3. `SUM(unidades)` suma las unidades de cada grupo.
-4. `ORDER BY suma_unidades DESC` muestra primero la tienda con más unidades.
+La cláusula `WHERE estado = 'Entregado'` excluye ventas pendientes o devueltas. Posteriormente, `GROUP BY tienda_id` forma los grupos y `SUM(unidades)` calcula el total de cada tienda. `ORDER BY suma_unidades DESC` presenta primero las tiendas que concentran más unidades.
 
-**Interpretación:** T05 presenta el mayor total (1.324 unidades), seguida muy de cerca por T03 (1.320). Estos resultados corresponden a datos de práctica y no describen ventas de una empresa real.
+En este dataset, **T05** ocupa el primer lugar con 1.324 unidades, apenas cuatro más que **T03**. La cifra expresa cantidad de unidades, no dinero ni número de transacciones.
 
 ## Aprendizajes
 
-- `WHERE` se aplica antes de agrupar y evita sumar ventas con estados no deseados.
-- La combinación `GROUP BY` + `SUM` produce indicadores agrupados.
-- Un alias como `suma_unidades` facilita ordenar el resultado calculado.
+- `WHERE` restringe las filas antes de agrupar.
+- `SUM` agrega unidades y `GROUP BY` calcula resultados por tienda.
+- Es posible ordenar utilizando el alias de una expresión agregada.
 
-**Captura:** el archivo `ejercicio_03_group_by.png` fue recibido en el chat; aún no figura publicado en el repositorio.
+**Estado:** consulta y captura publicadas. Los ejemplos adicionales de `HAVING` se documentan en el [README de la semana 02](../README.md), sin duplicar estas consultas.
