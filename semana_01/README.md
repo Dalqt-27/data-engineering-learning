@@ -1,35 +1,37 @@
 # Semana 01 — Fundamentos de SQL
 
-**Objetivo:** practicar selección de columnas, condiciones de filtrado, ordenamiento y límites de resultados; aplicar lo aprendido sobre una tabla real de práctica en PostgreSQL.
-
-**Herramientas utilizadas:** [SQLBolt](https://sqlbolt.com/), PostgreSQL y pgAdmin 4.
+**Objetivo:** recuperar columnas, filtrar datos, ordenar resultados y limitar las filas mostradas. Los conceptos se practicaron con [SQLBolt](https://sqlbolt.com/) y una tabla de ventas en PostgreSQL.
 
 ## Lecciones y evidencias
 
-| Lección | Contenido practicado | Evidencia |
+| Lección | Concepto trabajado | Captura |
 | --- | --- | --- |
-| 1 | `SELECT` y elección de columnas | [SQLBolt_Lesson1.png](evidencias/SQLBolt_Lesson1.png) |
-| 2 | `WHERE` y comparaciones numéricas | [SQLBolt_Lesson2.png](evidencias/SQLBolt_Lesson2.png) |
-| 3 | Filtros de texto, `LIKE` e `IN` | [SQLBolt_Lesson3.png](evidencias/SQLBolt_Lesson3.png) |
-| 4 | `ORDER BY`, `LIMIT` y `OFFSET` | [SQLBolt_Lesson4.png](evidencias/SQLBolt_Lesson4.png) |
+| [1](https://sqlbolt.com/lesson/1) | `SELECT` y selección de columnas | [Ver evidencia](evidencias/SQLBolt_Lesson1.png) |
+| [2](https://sqlbolt.com/lesson/2) | `WHERE` y comparaciones numéricas | [Ver evidencia](evidencias/SQLBolt_Lesson2.png) |
+| [3](https://sqlbolt.com/lesson/3) | Filtros de texto, `LIKE` e `IN` | [Ver evidencia](evidencias/SQLBolt_Lesson3.png) |
+| [4](https://sqlbolt.com/lesson/4) | `ORDER BY`, `LIMIT` y `OFFSET` | [Ver evidencia](evidencias/SQLBolt_Lesson4.png) |
 
-Las cuatro capturas están publicadas en `evidencias/`. Se conserva el nombre original de cada archivo para mantener la correspondencia con el calendario.
+Las cuatro capturas están publicadas en `evidencias/` y corresponden a los ejercicios resueltos en SQLBolt.
 
-## Resumen de aprendizaje (8 observaciones)
+## Ejercicios aplicados
 
-1. **`SELECT`** recupera las columnas indicadas; es preferible a `SELECT *` cuando se requieren campos concretos.
-2. **`FROM`** identifica la tabla consultada.
-3. **`WHERE`** descarta las filas que no cumplen una condición antes de obtener el resultado.
-4. Los patrones de **`LIKE`** permiten buscar texto: `%` coincide con cero o más caracteres y `_` con un carácter.
-5. **`IN`** compara un campo con varios valores posibles sin repetir condiciones `OR`.
-6. **`ORDER BY`** organiza las filas; `ASC` ordena ascendentemente y `DESC` de forma descendente.
-7. **`LIMIT`** muestra una cantidad máxima de filas; **`OFFSET`** permite omitir filas iniciales.
-8. Una consulta con `LIMIT 20` no informa el total de coincidencias: para ello se utiliza `COUNT(*)` con el mismo filtro.
+| Ejercicio | Técnica principal | Resultado |
+| --- | --- | --- |
+| [01 — Ventas entregadas](ejercicio_01/README.md) | `WHERE`, `ORDER BY`, `LIMIT`, `COUNT(*)` | 20 filas de muestra; **1.377 ventas entregadas** |
 
-## Aplicación con PostgreSQL
+La práctica se realizó con [`ventas.csv`](../datos/ventas.csv), importado en PostgreSQL y consultado mediante pgAdmin 4. Las tres consultas y sus capturas están documentadas dentro de la carpeta del ejercicio.
 
-En el [ejercicio 01 — Ventas entregadas](ejercicio_01/README.md) se practicaron tres consultas sobre `ventas.csv`: filtro de registros entregados, ordenamiento con tres columnas y conteo total. Se verificaron **20 filas de muestra** y **1.377 ventas entregadas**.
+## Aprendizajes
 
-## Siguiente etapa
+1. **`SELECT`** permite recuperar únicamente las columnas requeridas; `SELECT *` recupera todas.
+2. **`FROM`** especifica la tabla de origen.
+3. **`WHERE`** conserva las filas que cumplen la condición.
+4. **`LIKE`** utiliza patrones: `%` representa cero o más caracteres y `_`, un carácter.
+5. **`IN`** permite comparar un campo con varios valores posibles sin repetir `OR`.
+6. **`ORDER BY`** ordena la salida mediante `ASC` o `DESC`.
+7. **`LIMIT`** controla cuántas filas se muestran y **`OFFSET`** cuántas filas iniciales se omiten.
+8. **`COUNT(*)`** permite contar los registros filtrados sin confundirlos con la muestra de `LIMIT 20`.
 
-Continuar con consultas que relacionen `ventas`, `productos` y `tiendas` mediante `JOIN`, y posteriormente utilizar agregaciones y `GROUP BY`. Para documentar nuevas prácticas está disponible la [plantilla de ejercicios](../plantillas/README_ejercicio.md).
+## Continuidad
+
+Los conceptos de filtrado y ordenamiento se amplían en la [semana 02](../semana_02/README.md) mediante `JOIN`, agregaciones y `HAVING`.
