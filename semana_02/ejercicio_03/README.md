@@ -2,18 +2,28 @@
 
 ## Objetivo
 
-Obtener el total de unidades de ventas con estado `Entregado` para cada tienda y ordenar los resultados de mayor a menor.
+Calcular la cantidad total de unidades correspondientes a ventas con estado `Entregado` para cada tienda y presentar los resultados de mayor a menor.
 
-**Entorno:** PostgreSQL / pgAdmin 4.  
-**Dataset:** [`ventas.csv`](../../datos/ventas.csv).
+## Entorno y datos
 
-## Archivos
+- **Herramientas:** PostgreSQL y pgAdmin 4 (Query Tool).
+- **Dataset:** [`ventas.csv`](../../datos/ventas.csv), con 1.500 ventas sintéticas.
+- **Tabla:** `ventas`.
 
-| Consulta | Captura | Resultado observado |
-| --- | --- | --- |
-| [`ejercicio_03_group_by.sql`](ejercicio_03_group_by.sql) | [`ejercicio_03_group by.png`](ejercicio_03_group%20by.png) | **5 tiendas, 6.236 unidades** |
+## Consultas y resultados
 
-## Resultados
+| Propósito | Consulta SQL | Captura de pgAdmin | Resultado |
+| --- | --- | --- | --- |
+| Sumar unidades entregadas agrupando por tienda y ordenar de forma descendente | [`ejercicio_03_group_by.sql`](ejercicio_03_group_by.sql) | [Ver captura](ejercicio_03_group%20by.png) | **5 tiendas y 6.236 unidades** |
+
+## Criterio técnico
+
+- **Filtro:** `WHERE estado = 'Entregado'` excluye ventas que no se entregaron.
+- **Agrupación:** `GROUP BY tienda_id` genera un grupo para cada tienda.
+- **Agregación:** `SUM(unidades)` suma las unidades dentro de cada grupo.
+- **Orden:** `ORDER BY suma_unidades DESC` coloca primero las tiendas con mayor cantidad.
+
+## Validación
 
 | Tienda | Unidades entregadas |
 | --- | ---: |
@@ -24,18 +34,10 @@ Obtener el total de unidades de ventas con estado `Entregado` para cada tienda y
 | T02 | 1.143 |
 | **Total** | **6.236** |
 
-Los valores coinciden con los resultados mostrados en pgAdmin y con los registros del dataset sintético.
-
-## Criterio técnico
-
-La cláusula `WHERE estado = 'Entregado'` excluye ventas pendientes o devueltas. Posteriormente, `GROUP BY tienda_id` forma los grupos y `SUM(unidades)` calcula el total de cada tienda. `ORDER BY suma_unidades DESC` presenta primero las tiendas que concentran más unidades.
-
-En este dataset, **T05** ocupa el primer lugar con 1.324 unidades, apenas cuatro más que **T03**. La cifra expresa cantidad de unidades, no dinero ni número de transacciones.
+Los cinco resultados coinciden con la captura de pgAdmin y los datos de `ventas.csv`. **T05** presenta el mayor volumen, cuatro unidades por encima de **T03**. Se están contabilizando unidades, no ingresos monetarios ni cantidad de transacciones.
 
 ## Aprendizajes
 
-- `WHERE` restringe las filas antes de agrupar.
-- `SUM` agrega unidades y `GROUP BY` calcula resultados por tienda.
-- Es posible ordenar utilizando el alias de una expresión agregada.
-
-**Estado:** consulta y captura publicadas. Los ejemplos adicionales de `HAVING` se documentan en el [README de la semana 02](../README.md), sin duplicar estas consultas.
+- Aplicar `WHERE` antes de la agrupación para no incluir ventas con otro estado.
+- Calcular indicadores agrupados mediante `GROUP BY` y `SUM`.
+- Utilizar el alias de una agregación para ordenar los resultados.
