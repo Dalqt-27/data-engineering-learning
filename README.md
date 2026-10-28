@@ -1,51 +1,56 @@
 # Data Engineering Learning
 
-Repositorio de prácticas para desarrollar competencias en **Data Analytics e Ingeniería de Datos**. Reúne ejercicios de SQL, resultados comprobables y datasets sintéticos que servirán como base para futuros proyectos con Python, ETL y AWS.
+Portafolio de aprendizaje práctico en **Data Analytics e Ingeniería de Datos**. Reúne consultas SQL, evidencias de ejecución y datasets sintéticos; el propósito es documentar competencias técnicas de forma reproducible y avanzar hacia proyectos de Python, ETL y AWS.
 
-## Progreso
+## Progreso de aprendizaje
 
-| Etapa | Temas | Evidencias |
+| Semana | Contenidos | Ejercicios y resultados |
 | --- | --- | --- |
-| [Semana 01 — SQL básico](semana_01/README.md) | `SELECT`, `WHERE`, `LIKE`, `ORDER BY`, `LIMIT` | SQLBolt 1–4 y [ejercicio 01: ventas entregadas](semana_01/ejercicio_01/README.md) |
-| [Semana 02 — SQL intermedio](semana_02/README.md) | `INNER JOIN`, `LEFT JOIN`, `NULL`, `GROUP BY`, `HAVING` | SQLBolt 6–12, [ejercicio 02: INNER JOIN](semana_02/ejercicio_02/README.md) y [ejercicio 03: GROUP BY](semana_02/ejercicio_03/README.md) |
+| [01 — Fundamentos SQL](semana_01/README.md) | `SELECT`, `WHERE`, `LIKE`, `ORDER BY`, `LIMIT` | [01 — Ventas entregadas](semana_01/ejercicio_01/README.md): 20 registros de muestra y 1.377 ventas entregadas |
+| [02 — SQL intermedio](semana_02/README.md) | `INNER JOIN`, `LEFT JOIN`, `NULL`, `GROUP BY`, `HAVING` | [02 — Ventas y productos](semana_02/ejercicio_02/README.md): 1.500 filas; [03 — Unidades por tienda](semana_02/ejercicio_03/README.md): 5 tiendas y 6.236 unidades |
 
-**Resultados verificados:** 1.377 ventas entregadas sobre 1.500 ventas del dataset; 1.500 filas relacionadas con productos mediante `INNER JOIN`; 6.236 unidades entregadas distribuidas entre cinco tiendas. En la segunda semana también se ejecutaron [dos consultas con `HAVING`](semana_02/README.md#3-ejemplos-adicionales-where-y-having): una devuelve tres tiendas y la otra, 48 productos.
+La semana 02 incluye [dos ejemplos complementarios de `HAVING`](semana_02/README.md#ejemplos-complementarios--where-y-having) con sus consultas y capturas: tres tiendas superan 1.230 unidades entregadas y 48 productos tienen al menos diez ventas entregadas.
 
-## Estructura
+## Organización del repositorio
 
 ```text
 data-engineering-learning/
 ├── README.md
 ├── datos/
 │   ├── README.md
-│   └── *.csv                         # Datasets sintéticos
-├── plantillas/
-│   └── README_ejercicio.md
+│   └── *.csv                          # Datasets sintéticos compartidos
 ├── semana_01/
-│   ├── README.md
-│   ├── evidencias/                  # SQLBolt 1–4
-│   └── ejercicio_01/               # 3 SQL + 3 PNG + README
+│   ├── README.md                      # Lecciones y aprendizajes
+│   ├── evidencias/                    # Capturas SQLBolt
+│   └── ejercicio_01/
+│       ├── README.md
+│       ├── *.sql                      # Consultas ejecutadas
+│       └── *.png                      # Capturas de pgAdmin
 └── semana_02/
-    ├── README.md
-    ├── evidencias/                  # SQLBolt 6–12
-    ├── ejercicio_02/               # INNER JOIN: SQL + PNG + README
-    ├── ejercicio_03/               # GROUP BY: SQL + PNG + README
-    └── ejemplos_having/            # 2 SQL; faltan únicamente 2 PNG
+    ├── README.md                      # Lecciones, prácticas y aprendizajes
+    ├── evidencias/                    # Capturas SQLBolt
+    ├── ejercicio_02/                 # README + SQL + PNG
+    ├── ejercicio_03/                 # README + SQL + PNG
+    └── ejemplos_adicionales_having/  # Dos SQL y dos PNG
 ```
 
-## Recursos de práctica
+## Criterio uniforme de documentación
 
-- [Datasets: ventas, productos, tiendas e inventarios](datos/README.md).
-- [SQLBolt](https://sqlbolt.com/) para ejercicios interactivos.
-- PostgreSQL y pgAdmin 4 para ejecutar consultas sobre tablas importadas.
-- [Plantilla para documentar nuevos ejercicios](plantillas/README_ejercicio.md).
+Cada ejercicio aplicado utiliza el mismo formato:
 
-## Cómo se documenta cada avance
+1. **Objetivo:** qué debe resolver la consulta o transformación.
+2. **Entorno y datos:** herramienta, datasets y tablas utilizadas.
+3. **Consultas y resultados:** tabla con las columnas **Propósito | Consulta SQL | Captura de pgAdmin | Resultado**, con enlaces a archivos reales.
+4. **Criterio técnico:** filtros, relaciones, agrupaciones o cálculos empleados.
+5. **Validación:** resultados observados y comprobaciones realizadas.
+6. **Aprendizajes:** conclusiones técnicas específicas del ejercicio.
 
-1. **Semana:** `semana_XX/README.md` reúne contenidos, lecciones y aprendizajes, con enlaces a las capturas de SQLBolt.
-2. **Ejercicio aplicado:** `semana_XX/ejercicio_YY/` contiene el SQL o código, la captura de ejecución y un README con objetivo, criterios y resultados.
-3. **Ejemplos complementarios:** se agrupan por tema cuando no necesitan un ejercicio independiente, como `semana_02/ejemplos_having/`.
-4. **Verificación:** los resultados se registran solo después de ejecutarse. Cuando falte subir una captura, se indica expresamente.
-5. **Sin duplicados:** no se generan archivos SQL consolidados que repitan las consultas individuales.
+Para continuar, crear una carpeta `semana_XX/` con un único README de resumen y una subcarpeta `ejercicio_YY/` por práctica. En ejercicios pequeños, conservar el código y las capturas juntos. Las imágenes de SQLBolt se organizan aparte, en `evidencias/`. No es necesario añadir un archivo semanal que duplique las consultas de los ejercicios.
 
-**Nota:** los datasets son artificiales y se utilizan exclusivamente con fines educativos. No se deben publicar contraseñas, claves de AWS ni información confidencial.
+## Recursos
+
+- [Datos de práctica y descripción de los CSV](datos/README.md).
+- [SQLBolt](https://sqlbolt.com/) para la práctica guiada de SQL.
+- **PostgreSQL y pgAdmin 4** para consultas y validación de resultados.
+
+**Nota:** los datasets son sintéticos y no representan operaciones de una empresa real. No publicar contraseñas, credenciales de AWS ni información privada.
