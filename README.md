@@ -1,46 +1,59 @@
 # Data Engineering Learning
 
-Portafolio de aprendizaje práctico en **Data Analytics → Data Engineering**. Reúne ejercicios ejecutados, consultas SQL, capturas de resultados y conjuntos de datos para practicar con herramientas de análisis e ingeniería de datos.
+Portafolio de aprendizaje práctico orientado a **Data Analytics → Data Engineering**. Contiene consultas SQL ejecutadas, resultados comprobables y datos sintéticos para practicar procesamiento y análisis de información.
 
-## Progreso
+## Progreso documentado
 
-| Módulo | Contenido | Evidencia |
+| Módulo | Temas | Ejercicios |
 | --- | --- | --- |
-| [Semana 01 — Fundamentos SQL](semana_01/README.md) | `SELECT`, filtros, operadores, ordenamiento y límites con SQLBolt | Cuatro capturas de ejercicios |
-| [Ejercicio 01 — Ventas entregadas](semana_01/ejercicio_01/README.md) | Consultas en PostgreSQL y pgAdmin 4 | Tres archivos SQL y tres capturas de ejecución |
+| [Semana 01 — Fundamentos SQL](semana_01/README.md) | `SELECT`, `WHERE`, `LIKE`, ordenamiento y límites | [01 — Ventas entregadas](semana_01/ejercicio_01/README.md): 20 filas de muestra y 1.377 ventas entregadas |
+| [Semana 02 — SQL intermedio](semana_02/README.md) | `INNER JOIN`, `LEFT JOIN`, `NULL`, agregaciones, `GROUP BY` y `HAVING` | [02 — Ventas y productos](semana_02/ejercicio_02/README.md): 1.500 filas; [03 — Unidades por tienda](semana_02/ejercicio_03/README.md): 5 tiendas y 6.236 unidades |
 
-En el ejercicio 01 se consultó una muestra de **20 ventas entregadas** y se obtuvo un total de **1.377 registros** con estado `Entregado` dentro de un dataset sintético de 1.500 ventas.
+**Verificación:** los SQL de los ejercicios 01–03 y los resultados declarados se apoyan en consultas y capturas proporcionadas. Las capturas de **la semana 02** todavía deben subirse al repositorio; algunas tareas de SQLBolt están documentadas como parciales en el [resumen semanal](semana_02/README.md).
 
-## Organización
+## Estructura del repositorio
 
 ```text
 data-engineering-learning/
 ├── README.md
 ├── datos/
 │   ├── README.md
-│   └── *.csv                      # Datos sintéticos de práctica
+│   └── *.csv                         # Datos sintéticos
+├── plantillas/
+│   └── README_ejercicio.md
 ├── semana_01/
-│   ├── README.md                 # Contenidos y aprendizajes semanales
-│   ├── evidencias/               # Capturas de SQLBolt (lecciones 1–4)
+│   ├── README.md                    # Aprendizajes semanales y SQLBolt
+│   ├── evidencias/                  # Capturas SQLBolt 1–4
 │   └── ejercicio_01/
-│       ├── README.md             # Objetivo, consultas y resultados
-│       ├── ejercicio_01_*.sql    # Tres consultas SQL
-│       └── ejercicio_01_*.png    # Tres evidencias de pgAdmin
-└── plantillas/
-    └── README_ejercicio.md      # Modelo reutilizable para próximas prácticas
+│       ├── README.md
+│       ├── *.sql                    # Tres consultas PostgreSQL
+│       └── *.png                    # Tres capturas pgAdmin
+└── semana_02/
+    ├── README.md                    # Lecciones y notas WHERE / HAVING
+    ├── evidencias/                  # Capturas SQLBolt 6–12 (por subir)
+    ├── ejercicio_02/
+    │   ├── README.md
+    │   ├── ejercicio_02_innerjoin.sql
+    │   └── ejercicio_02_innerjoin.png # Por subir
+    └── ejercicio_03/
+        ├── README.md
+        ├── ejercicio_03_group_by.sql
+        └── ejercicio_03_group_by.png  # Por subir
 ```
 
-## Recursos
+## Datasets y herramientas
 
-- [Datasets y descripción de columnas](datos/README.md).
-- [Documentación de la semana 01](semana_01/README.md).
-- [Plantilla de ejercicios](plantillas/README_ejercicio.md).
+- [Descripción de los cinco CSV](datos/README.md).
+- **SQL:** PostgreSQL, pgAdmin 4 y [SQLBolt](https://sqlbolt.com/).
+- En etapas posteriores: Python, pandas, Power BI y AWS, conforme al plan de estudio.
 
-## Convención para nuevas entregas
+## Cómo incorporar un ejercicio nuevo
 
-1. Crear `semana_XX/` y documentar los aprendizajes en su `README.md`.
-2. Guardar cada práctica aplicada en `semana_XX/ejercicio_YY/`, con su **código, capturas y README**.
-3. Usar nombres coincidentes para consulta y evidencia (por ejemplo, `ejercicio_02_ventas.sql` y `ejercicio_02_ventas.png`). En ejercicios pequeños, mantenerlos juntos; separar carpetas solo si aumenta considerablemente la cantidad de archivos.
-4. Registrar únicamente resultados efectivamente ejecutados y conservar las consultas necesarias para reproducirlos.
+1. Crear `semana_XX/ejercicio_YY/` y colocar allí el código y sus capturas con **nombres relacionados**.
+2. Crear el `README.md` del ejercicio usando la [plantilla](plantillas/README_ejercicio.md): objetivo, entorno, código, validación y aprendizajes.
+3. Actualizar el `README.md` semanal con las lecciones y el vínculo al ejercicio.
+4. Agregar al cuadro de progreso principal solo los resultados efectivamente comprobados.
 
-**Datos:** los archivos CSV son sintéticos y no representan información comercial real. No se deben subir contraseñas, archivos de configuración sensibles ni credenciales de servicios cloud.
+Para ejercicios cortos se mantienen `.sql` y `.png` juntos. Las capturas de cursos interactivos se agrupan en la carpeta `evidencias/` de cada semana. No se crean archivos SQL consolidados que dupliquen los de los ejercicios.
+
+> **Nota:** los datos publicados son sintéticos. No almacenar contraseñas, credenciales cloud ni datos privados en este repositorio.
